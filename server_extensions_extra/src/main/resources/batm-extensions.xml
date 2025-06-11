@@ -135,7 +135,6 @@
                 <cryptocurrency>USDTTRON</cryptocurrency>
                 <cryptocurrency>USDC</cryptocurrency>
                 <cryptocurrency>BNB</cryptocurrency>
-                <cryptocurrency>SOL</cryptocurrency>
                 <help>Ankerpay custodial wallet. Requires address, apiKey, and apiSecret.</help>
             </wallet>
             <exchange prefix="ankerpay" name="Ankerpay Exchange">
@@ -149,7 +148,6 @@
                 <cryptocurrency>USDTTRON</cryptocurrency>
                 <cryptocurrency>USDC</cryptocurrency>
                 <cryptocurrency>BNB</cryptocurrency>
-                <cryptocurrency>SOL</cryptocurrency>
                 <help>Ankerpay exchange. Requires apiKey, apiSecret, and optional fiatcurrency (default USD).</help>
             </exchange>
             <ratesource prefix="ankerpay" name="Ankerpay Rate Source">
@@ -163,7 +161,6 @@
                 <cryptocurrency>USDTTRON</cryptocurrency>
                 <cryptocurrency>USDC</cryptocurrency>
                 <cryptocurrency>BNB</cryptocurrency>
-                <cryptocurrency>SOL</cryptocurrency>
                 <help>Ankerpay rate source. Requires apiKey, apiSecret, and optional fiatcurrency (default USD).</help>
             </ratesource>
             <ratesource prefix="btcfix" name ="Fix Price" >
