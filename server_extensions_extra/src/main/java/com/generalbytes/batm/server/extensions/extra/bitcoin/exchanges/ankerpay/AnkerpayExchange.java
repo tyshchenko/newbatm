@@ -18,8 +18,8 @@ public class AnkerpayExchange implements IExchange {
 
     @Override
     public Set<String> getCryptoCurrencies() {
-        // Only BTC supported for now
-        return Collections.singleton("BTC");
+        // Support BTC, ETH, TRX, USDT, USDTTRON, USDC, BNB, SOL
+        return Set.of("BTC", "ETH", "TRX", "USDT", "USDTTRON", "USDC", "BNB", "SOL");
     }
 
     @Override
