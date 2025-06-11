@@ -1,0 +1,31 @@
+plugins {
+    id("application")
+}
+
+version = "1.0.0"
+
+application {
+    mainClass = "com.generalbytes.batm.sshtunnel.Main"
+}
+
+distributions {
+    main {
+        contents {
+            eachFile {
+                // place the files in the archive root - out of the top level directory
+                it.path = it.path.replaceFirst(/^$project.archivesBaseName-$version\//, '')
+            }
+        }
+    }
+}
+
+configurations.configureEach {
+    exclude group: "org.eclipse.ee4j"
+}
+
+dependencies {
+    implementation("org.apache.sshd:sshd-core:2.3.0")
+    implementation("org.apache.sshd:sshd-common:2.3.0")
+    implementation("ch.qos.logback:logback-classic:1.2.9")
+    implementation("org.bouncycastle:bcpkix-jdk15on:1.63")
+}

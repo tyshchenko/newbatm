@@ -1,0 +1,20 @@
+plugins {
+    id("application")
+    id("shared-repositories-ext-conventions")
+}
+
+application {
+    mainClass = "com.generalbytes.batm.server.extensions.test.Tester"
+}
+
+jar {
+    archiveFileName = "batm_server_extensions_test.jar"
+}
+
+dependencies {
+    implementation project(":server_extensions_api")
+    implementation project(":server_extensions_extra")
+
+    implementation("net.sf.jopt-simple:jopt-simple:4.9")
+    runtimeOnly("org.slf4j:slf4j-simple:1.7.28")
+}

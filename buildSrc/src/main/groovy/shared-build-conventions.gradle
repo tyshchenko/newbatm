@@ -1,0 +1,44 @@
+plugins {
+    id("java")
+    id("com.generalbytes.gradle.main")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+    options.incremental = true
+}
+
+dependencySubstitutions {
+    substitute file("$project.rootDir/dependencySubstitutions.txt")
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+afterEvaluate {
+    if (pluginManager.hasPlugin('com.generalbytes.gradle.dependency.verification')) {
+        dependencyChecksums {
+            global = true
+        }
+        dependencyVerifications {
+            setConfigurations([]) // effectively turns off all checksum verifications - replaced by gradle's verification-metadata.xml
+        }
+    }
+}

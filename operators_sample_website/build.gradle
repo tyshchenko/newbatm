@@ -1,0 +1,27 @@
+plugins {
+    id("shared-publish-conventions")
+}
+
+group = projectGroup
+version = projectVersion
+
+jar {
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
+configurations {
+    artifactOnly
+}
+
+artifacts {
+    artifactOnly jar
+}
+
+dependencies {
+    implementation project(":server_extensions_api")
+
+    implementation("org.slf4j:slf4j-api:1.7.28")
+    implementation("javax.ws.rs:javax.ws.rs-api:2.1")
+    implementation("javax.servlet:javax.servlet-api:3.1.0")
+    implementation("com.google.code.gson:gson:2.8.9")
+}
