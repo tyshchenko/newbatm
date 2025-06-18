@@ -12,14 +12,14 @@ import java.util.*;
 
 
 
-public class AnkerpayRateSource implements IRateSource {
+public class AnkerpayRateSource implements IRateSourceAdvanced {
     private ValrAPI api;
     private String preferredFiatCurrency = FiatCurrency.ZAR.getCode();
 
     public AnkerpayRateSource(String preferredFiatCurrency) {
         api = RestProxyFactory.createProxy(ValrAPI.class, "https://api.valr.com");
 
-        if (FiatCurrency.ZAR.getCode().equalsIgnoreCase(preferedFiatCurrency)) {
+        if (FiatCurrency.ZAR.getCode().equalsIgnoreCase(preferredFiatCurrency)) {
             this.preferredFiatCurrency = FiatCurrency.ZAR.getCode();
         }
     }

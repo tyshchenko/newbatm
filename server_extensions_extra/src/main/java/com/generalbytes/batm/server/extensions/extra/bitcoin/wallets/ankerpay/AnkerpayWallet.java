@@ -21,7 +21,7 @@ import si.mazi.rescu.RestProxyFactory;
 
 
 public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddress{
-    private static final Logger log = LoggerFactory.getLogger(LocalnodeWallet.class);
+    private static final Logger log = LoggerFactory.getLogger(AnkerpayWallet.class);
     private LocalAPI api;
 
     public AnkerpayWallet() {
