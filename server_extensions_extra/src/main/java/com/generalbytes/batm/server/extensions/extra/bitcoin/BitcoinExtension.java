@@ -55,6 +55,7 @@ import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.hitbtc.Hi
 import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.okx.OkxExchange;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.poloniex.PoloniexExchange;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.stillmandigital.StillmanDigitalExchange;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.ankerpay.AnkerpayExchange;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.paymentprocessors.bitcoinpay.BitcoinPayPP;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.paymentprocessors.coinofsale.CoinOfSalePP;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.sources.bitkub.BitKubRateSource;
@@ -63,6 +64,7 @@ import com.generalbytes.batm.server.extensions.extra.bitcoin.sources.coingecko.C
 import com.generalbytes.batm.server.extensions.extra.bitcoin.sources.coinpaprika.CoinPaprikaRateSource;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.sources.mrcoin.MrCoinRateSource;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.sources.satangpro.SatangProRateSource;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.sources.ankerpay.AnkerpayRateSource;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.bitcoind.BATMBitcoindRPCWallet;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.bitcoind.BATMBitcoindRPCWalletWithUniqueAddresses;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.bitcore.BitcoreWallet;
@@ -74,6 +76,7 @@ import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.coinbase.v2
 import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.coinbase.v2.ICoinbaseV2API;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.cryptx.v2.CryptXWallet;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.cryptx.v2.CryptXWithUniqueAddresses;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.ankerpay.AnkerpayWallet;
 import com.generalbytes.batm.server.extensions.watchlist.IWatchList;
 
 import java.math.BigDecimal;
@@ -120,11 +123,8 @@ public class BitcoinExtension extends AbstractExtension {
             } else if ("ankerpay".equalsIgnoreCase(prefix)) {
                 String apiKey = paramTokenizer.nextToken();
                 String apiSecret = paramTokenizer.nextToken();
-                String preferredFiatCurrency = FiatCurrency.USD.getCode();
-                if (paramTokenizer.hasMoreTokens()) {
-                    preferredFiatCurrency = paramTokenizer.nextToken().toUpperCase();
-                }
-                return new com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.ankerpay.AnkerpayExchange(apiKey, apiSecret, preferredFiatCurrency);
+                String typeorder = paramTokenizer.nextToken();
+                return new AnkerpayExchange(apiKey, apiSecret, typeorder);
             } else if ("bitstamp".equalsIgnoreCase(prefix)) {
                 String preferredFiatCurrency = FiatCurrency.USD.getCode();
                 String something = paramTokenizer.nextToken();
@@ -500,11 +500,7 @@ public class BitcoinExtension extends AbstractExtension {
                 }
                 return new CryptXWallet(scheme, host, port, token, walletId, priority, customFeePrice, customGasLimit, password);
             } else if ("ankerpay".equalsIgnoreCase(walletType)) {
-                // ankerpay:address:apiKey:apiSecret
-                String address = st.nextToken();
-                String apiKey = st.nextToken();
-                String apiSecret = st.nextToken();
-                return new com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.AnkerpayWallet(address, apiKey, apiSecret);
+                return new AnkerpayWallet();
             }
         }
         } catch (Exception e) {
@@ -572,13 +568,8 @@ public class BitcoinExtension extends AbstractExtension {
                 }
                 return new FixPriceRateSource(rate, preferredFiatCurrency);
             } else if ("ankerpay".equalsIgnoreCase(rsType)) {
-                String apiKey = st.nextToken();
-                String apiSecret = st.nextToken();
-                String preferredFiatCurrency = FiatCurrency.USD.getCode();
-                if (st.hasMoreTokens()) {
-                    preferredFiatCurrency = st.nextToken().toUpperCase();
-                }
-                return new com.generalbytes.batm.server.extensions.extra.bitcoin.sources.ankerpay.AnkerpayRateSource(apiKey, apiSecret, preferredFiatCurrency);
+                String preferredFiatCurrency = FiatCurrency.ZAR.getCode();
+                return new AnkerpayRateSource(preferredFiatCurrency);
             } else if ("bitfinex".equalsIgnoreCase(rsType)) {
                 String preferredFiatCurrency = FiatCurrency.USD.getCode();
                 if (st.hasMoreTokens()) {
