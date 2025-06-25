@@ -54,6 +54,7 @@ public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddres
         result.add(CryptoCurrency.USDT.getCode());
         result.add(CryptoCurrency.USDTTRON.getCode());
         result.add(CryptoCurrency.TRX.getCode());
+        result.add(CryptoCurrency.BNB.getCode());
         return result;
     }
 
@@ -70,7 +71,7 @@ public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddres
         String rcryptoCurrency = cryptoCurrency;
 
         if (CryptoCurrency.USDTTRON.getCode().equalsIgnoreCase(cryptoCurrency)) {
-            rcryptoCurrency = "USDT";
+            rcryptoCurrency = "USDTTRC20";
         }
         final BalanceData balance = api.getStatus(rcryptoCurrency, address);
         return balance;
@@ -101,7 +102,7 @@ public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddres
         String rcryptoCurrency = cryptoCurrency;
 
         if (CryptoCurrency.USDTTRON.getCode().equalsIgnoreCase(cryptoCurrency)) {
-            rcryptoCurrency = "USDT";
+            rcryptoCurrency = "USDTTRC20";
         }
         final BalanceData balance = api.getBalanse(rcryptoCurrency);
         return balance.getBalance();
