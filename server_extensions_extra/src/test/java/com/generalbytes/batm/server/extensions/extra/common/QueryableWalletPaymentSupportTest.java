@@ -3,7 +3,7 @@ package com.generalbytes.batm.server.extensions.extra.common;
 import com.generalbytes.batm.common.currencies.CryptoCurrency;
 import com.generalbytes.batm.server.extensions.IQueryableWallet;
 import com.generalbytes.batm.server.extensions.IWallet;
-import com.generalbytes.batm.server.extensions.extra.ethereum.UsdtPaymentSupport;
+import com.generalbytes.batm.server.extensions.extra.ethereum.EthDefinition;
 import com.generalbytes.batm.server.extensions.payment.PaymentRequest;
 import com.generalbytes.batm.server.extensions.payment.ReceivedAmount;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class QueryableWalletPaymentSupportTest {
 
     private ReceivedAmount received;
-    private final QueryableWalletPaymentSupport paymentSupport = new UsdtPaymentSupport();
+    private final QueryableWalletPaymentSupport paymentSupport = new EthDefinition();
 
     @Test
     void invalidAmount() {
