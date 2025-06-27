@@ -4,6 +4,7 @@ import com.generalbytes.batm.server.extensions.payment.ReceivedAmount;
 import com.generalbytes.batm.common.currencies.CryptoCurrency;
 import com.generalbytes.batm.server.extensions.IWallet;
 import com.generalbytes.batm.server.extensions.IGeneratesNewDepositCryptoAddress;
+import com.generalbytes.batm.server.extensions.IQueryableWallet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -128,7 +129,7 @@ public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddres
     @Override
     public ReceivedAmount getReceivedAmount(String address, String cryptoCurrency) {
         BalanceData amount = getStatus(address, cryptoCurrency);
-        return new ReceivedAmount(amount.getBalance(), 0)
+        return new ReceivedAmount(amount.getBalance(), 0);
     }
 
     @Override
