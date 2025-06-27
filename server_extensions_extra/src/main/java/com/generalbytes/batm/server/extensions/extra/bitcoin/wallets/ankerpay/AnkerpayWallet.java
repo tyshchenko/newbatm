@@ -1,6 +1,6 @@
 package com.generalbytes.batm.server.extensions.extra.bitcoin.wallets.ankerpay;
 
-
+import com.generalbytes.batm.server.extensions.payment.ReceivedAmount;
 import com.generalbytes.batm.common.currencies.CryptoCurrency;
 import com.generalbytes.batm.server.extensions.IWallet;
 import com.generalbytes.batm.server.extensions.IGeneratesNewDepositCryptoAddress;
@@ -20,7 +20,7 @@ import si.mazi.rescu.RestProxyFactory;
 
 
 
-public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddress{
+public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddress, IQueryableWallet{
     private static final Logger log = LoggerFactory.getLogger(AnkerpayWallet.class);
     private LocalAPI api;
 
@@ -126,6 +126,12 @@ public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddres
     }
 
     @Override
+    public ReceivedAmount getReceivedAmount(String address, String cryptoCurrency) {
+        BalanceData amount = getStatus(address, cryptoCurrency);
+        return new ReceivedAmount(amount.getBalance(), 0)
+    }
+
+    @Override
     public String generateNewDepositCryptoAddress(String cryptoCurrency, String label) {
         log.info("generateNewDepositCryptoAddress {}",label);
         if (!getCryptoCurrencies().contains(cryptoCurrency)) {
@@ -141,4 +147,11 @@ public class AnkerpayWallet implements IWallet, IGeneratesNewDepositCryptoAddres
         final AddressData address = api.getAddressWithLabel(rcryptoCurrency, new LNAddressRequest(new BigDecimal(1), label));
         return address.getAddress();
     }
+
+    public ReceivedAmount getTokenBalance(String address, String cryptoCurrency, String label, BigDecimal amount) {
+        LabeledData result = api.getlabelstatus(cryptoCurrency, address, label, amount.toString());
+        return new ReceivedAmount(result.getBalance(), result.getConfirmation());
+    }
+
+
 }
