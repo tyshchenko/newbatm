@@ -24,6 +24,7 @@ import com.generalbytes.batm.server.extensions.ExtensionsUtil;
 import com.generalbytes.batm.server.extensions.ICryptoAddressValidator;
 import com.generalbytes.batm.server.extensions.ICryptoCurrencyDefinition;
 import com.generalbytes.batm.server.extensions.IWallet;
+import com.google.common.collect.ImmutableSet;
 
 import java.util.Collection;
 import java.util.Collections;
