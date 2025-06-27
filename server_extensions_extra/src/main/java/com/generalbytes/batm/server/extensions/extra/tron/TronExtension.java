@@ -38,7 +38,9 @@ public class TronExtension extends AbstractExtension {
         add(CryptoCurrency.USDTTRON.getCode());
     }});
 
-    private static final Set<ICryptoCurrencyDefinition> cryptoCurrencyDefinitions = Collections.singleton(new UsdttronDefinition());
+    private static final Set<ICryptoCurrencyDefinition> cryptoCurrencyDefinitions = ImmutableSet.of(
+        new UsdttronDefinition(),
+        new TronDefinition());
 
     @Override
     public String getName() {

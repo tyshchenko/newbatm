@@ -15,18 +15,18 @@
  * Web      :  http://www.generalbytes.com
  *
  ************************************************************************************/
-package com.generalbytes.batm.server.extensions.extra.ethereum;
+package com.generalbytes.batm.server.extensions.extra.tron;
 
 import com.generalbytes.batm.common.currencies.CryptoCurrency;
 import com.generalbytes.batm.server.extensions.extra.common.LabeledWalletPaymentSupport;
 
 import java.util.concurrent.TimeUnit;
 
-public class UsdtPaymentSupport extends LabeledWalletPaymentSupport {
+public class TronPaymentSupport extends LabeledWalletPaymentSupport {
 
     @Override
     protected String getCryptoCurrency() {
-        return CryptoCurrency.USDT.getCode();
+        return CryptoCurrency.TRX.getCode();
     }
 
     protected long getPollingPeriodMillis() {

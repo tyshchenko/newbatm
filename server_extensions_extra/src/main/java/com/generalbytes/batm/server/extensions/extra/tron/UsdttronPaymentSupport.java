@@ -18,11 +18,11 @@
 package com.generalbytes.batm.server.extensions.extra.tron;
 
 import com.generalbytes.batm.common.currencies.CryptoCurrency;
-import com.generalbytes.batm.server.extensions.extra.common.QueryableWalletPaymentSupport;
+import com.generalbytes.batm.server.extensions.extra.common.LabeledWalletPaymentSupport;
 
 import java.util.concurrent.TimeUnit;
 
-public class UsdttronPaymentSupport extends QueryableWalletPaymentSupport {
+public class UsdttronPaymentSupport extends LabeledWalletPaymentSupport {
 
     @Override
     protected String getCryptoCurrency() {

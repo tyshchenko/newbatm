@@ -12,8 +12,8 @@ public abstract class LabeledWalletPaymentSupport extends PollingPaymentSupport 
 
     @Override
     public PaymentRequest createPaymentRequest(IPaymentRequestSpecification spec) {
-        AnkerpayWallet wallet = (AnkerpayWallet) spec.getWallet();
-        ReceivedAmount receivedAmount = wallet.getTokenBalance(spec.getAddress(), spec.getCryptoCurrency(), spec.getDescription(), spec.getTotal());
+//        AnkerpayWallet wallet = (AnkerpayWallet) spec.getWallet();
+//        ReceivedAmount receivedAmount = wallet.getTokenBalance(spec.getOutputs().get(0).getAddress(), spec.getCryptoCurrency(), spec.getDescription(), spec.getTotal());
 
         return super.createPaymentRequest(spec);
     }
