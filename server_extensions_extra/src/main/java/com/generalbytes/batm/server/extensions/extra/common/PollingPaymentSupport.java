@@ -66,9 +66,9 @@ public abstract class PollingPaymentSupport implements IPaymentSupport {
         if (spec.getOutputs().size() != 1) {
             throw new IllegalStateException("Only 1 output supported");
         }
-        if (spec.getRemoveAfterNumberOfConfirmationsOfOutgoingTransaction() != -1) {
-            throw new IllegalStateException("Only non-forwarding requests supported");
-        }
+//        if (spec.getRemoveAfterNumberOfConfirmationsOfOutgoingTransaction() != -1) {
+//            throw new IllegalStateException("Only non-forwarding requests supported");
+//        }
 
         String address = spec.getOutputs().get(0).getAddress();
 
