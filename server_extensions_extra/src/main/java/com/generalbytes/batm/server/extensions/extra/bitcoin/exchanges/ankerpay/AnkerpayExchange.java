@@ -49,6 +49,7 @@ public class AnkerpayExchange implements IExchange {
         // Support BTC, ETH, TRX, USDT, USDTTRON, USDC, BNB, SOL
         Set<String> result = new HashSet<String>();
         result.add(CryptoCurrency.BTC.getCode());
+        result.add(CryptoCurrency.BNB.getCode());
         result.add(CryptoCurrency.ETH.getCode());
         result.add(CryptoCurrency.USDC.getCode());
         result.add(CryptoCurrency.USDT.getCode());

@@ -43,6 +43,7 @@ public class EthereumExtension extends AbstractExtension{
         new DaiDefinition(),
         new EthDefinition(),
         new BizzDefinition(),
+        new BnbDefinition(),
         new UsdtDefinition(),
         new UsdcDefinition());
 
@@ -55,6 +56,7 @@ public class EthereumExtension extends AbstractExtension{
     public Set<String> getSupportedCryptoCurrencies() {
         HashSet<String> result = new HashSet<>();
         result.add(CryptoCurrency.ETH.getCode());
+        result.add(CryptoCurrency.BNB.getCode());
         result.add(CryptoCurrency.ANT.getCode());
         result.add(CryptoCurrency.BAT.getCode());
         result.add(CryptoCurrency.REP.getCode());
